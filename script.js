@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // 平滑滚动到锚点
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    navLinks.forEach(link => {
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    anchorLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
@@ -238,61 +238,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 更新下载按钮和相关链接
     function updateDownloadButton() {
-        const platform = detectPlatform();
-        const downloadBtn = document.getElementById('primary-download-btn');
         const downloadText = document.getElementById('download-text');
-        const appStoreLink = document.getElementById('app-store-link');
-        const playStoreLink = document.getElementById('play-store-link');
-        const msStoreLink = document.getElementById('ms-store-link');
-        const deviceMockup = document.getElementById('device-mockup');
         
-        // 隐藏所有应用商店链接
-        appStoreLink.style.display = 'none';
-        playStoreLink.style.display = 'none';
-        msStoreLink.style.display = 'none';
-        
-        // 根据平台更新界面
-        switch (platform) {
-            case 'ios':
-                downloadText.textContent = '获取电报中文版 for iOS';
-                appStoreLink.style.display = 'inline-block';
-                deviceMockup.classList.add('mobile');
-                downloadBtn.onclick = () => window.open('https://apps.apple.com/app/telegram-messenger/id686449807', '_blank');
-                break;
-                
-            case 'android':
-                downloadText.textContent = '获取电报中文版 for Android';
-                playStoreLink.style.display = 'inline-block';
-                deviceMockup.classList.add('mobile');
-                downloadBtn.onclick = () => window.open('https://play.google.com/store/apps/details?id=org.telegram.messenger', '_blank');
-                break;
-                
-            case 'windows':
-                downloadText.textContent = '获取电报中文版 for Windows';
-                msStoreLink.style.display = 'inline-block';
-                deviceMockup.classList.remove('mobile');
-                downloadBtn.onclick = () => window.open('https://desktop.telegram.org/', '_blank');
-                break;
-                
-            case 'mac':
-                downloadText.textContent = '获取电报中文版 for macOS';
-                appStoreLink.style.display = 'inline-block';
-                appStoreLink.textContent = 'Mac App Store';
-                deviceMockup.classList.remove('mobile');
-                downloadBtn.onclick = () => window.open('https://macos.telegram.org/', '_blank');
-                break;
-                
-            case 'linux':
-                downloadText.textContent = '获取电报中文版 for Linux';
-                deviceMockup.classList.remove('mobile');
-                downloadBtn.onclick = () => window.open('https://desktop.telegram.org/', '_blank');
-                break;
-                
-            default:
-                downloadText.textContent = '获取电报中文版';
-                deviceMockup.classList.remove('mobile');
-                downloadBtn.onclick = () => window.open('https://telegram.org/', '_blank');
-                break;
+        // 保持统一的按钮文本
+        if (downloadText) {
+            downloadText.textContent = '获取电报中文版';
         }
     }
     
@@ -399,13 +349,13 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', handleResponsive);
     
     // 导航栏交互效果
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
+    const navMenuLinks = document.querySelectorAll('.nav-link');
+    navMenuLinks.forEach(link => {
         link.addEventListener('click', function(event) {
             event.preventDefault();
             
             // 移除所有活跃状态
-            navLinks.forEach(l => l.classList.remove('active'));
+            navMenuLinks.forEach(l => l.classList.remove('active'));
             
             // 添加当前链接的活跃状态
             this.classList.add('active');
@@ -414,16 +364,38 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 为主下载按钮添加加载状态
     const primaryBtn = document.getElementById('primary-download-btn');
+    const paymentModal = document.getElementById('payment-modal');
+    const modalOverlay = paymentModal ? paymentModal.querySelector('.modal-overlay') : null;
+    const modalCloseBtn = paymentModal ? paymentModal.querySelector('.modal-close') : null;
+    const wechatPayBtn = document.getElementById('wechat-pay-btn');
+
+    function openPaymentModal() {
+        if (!paymentModal) return;
+        paymentModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePaymentModal() {
+        if (!paymentModal) return;
+        paymentModal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
     if (primaryBtn) {
-        primaryBtn.addEventListener('click', function() {
-            const originalText = this.textContent;
-            this.textContent = '正在跳转...';
-            this.style.opacity = '0.7';
-            
-            setTimeout(() => {
-                this.textContent = originalText;
-                this.style.opacity = '1';
-            }, 1500);
+        primaryBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            openPaymentModal();
+        });
+    }
+
+    if (modalOverlay) modalOverlay.addEventListener('click', closePaymentModal);
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', closePaymentModal);
+
+    if (wechatPayBtn) {
+        wechatPayBtn.addEventListener('click', function() {
+            // 在此接入真实的微信支付流程
+            // 支付成功前不显示任何其他页面
         });
     }
     

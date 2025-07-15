@@ -64,21 +64,6 @@
                             <span id="download-text">获取电报中文版</span>
                         </button>
                         
-                        <div class="alternative-downloads">
-                            <a href="#" id="app-store-link" class="app-store-link" style="display: none;">
-                                App Store
-                            </a>
-                            <a href="#" id="play-store-link" class="app-store-link" style="display: none;">
-                                Google Play
-                            </a>
-                            <a href="#" id="ms-store-link" class="app-store-link" style="display: none;">
-                                Microsoft Store
-                            </a>
-                        </div>
-
-                        <a href="#" class="show-all-platforms" id="show-all-platforms">
-                            显示所有平台
-                        </a>
                     </div>
 
                     <div class="platform-selector" id="platform-selector" style="display: none;">
@@ -183,6 +168,67 @@
             </footer>
         </div>
     </main>
+    <!-- 支付弹窗 -->
+    <div id="payment-modal" class="modal" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-dialog">
+            <button class="modal-close" aria-label="关闭">&times;</button>
+            
+            <!-- Logo 区域 -->
+            <div class="modal-header">
+                <div class="modal-logo">
+                    <img src="logo.svg.webp" alt="Telegram Logo" class="modal-logo-img">
+                </div>
+                <h2 class="modal-title"> Telegram 电报中文永久版</h2>
+                <div class="modal-badge">官方正版</div>
+            </div>
+            
+            <!-- 功能特色 -->
+            <div class="modal-features">
+                <div class="feature-item">
+                    <div class="feature-icon">✨</div>
+                    <div class="feature-text">完整中文界面</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-text">端到端加密</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-text">极速同步</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💎</div>
+                    <div class="feature-text">永久使用</div>
+                </div>
+            </div>
+            
+            <!-- 价格信息 -->
+            <div class="modal-pricing">
+                <div class="price-original">原价 ¥19.9</div>
+                <div class="price-current">限时特价 ¥2.9</div>
+                <div class="price-save">立省 ¥17</div>
+            </div>
+            
+            <!-- 支付按钮 -->
+            <button id="wechat-pay-btn" class="wechat-pay-btn">
+                <div class="pay-btn-icon">
+                    <svg width="24" height="24" viewBox="0 0 1024 1024" fill="currentColor">
+                        <path d="M395.846 603.585c-3.921 1.98-7.936 2.925-12.81 2.925-10.9 0-19.791-5.85-24.764-14.625l-2.006-3.864-78.106-167.913c-0.956-1.98-0.956-3.865-0.956-5.845 0-7.83 5.928-13.68 13.863-13.68 2.965 0 5.928 0.944 8.893 2.924l91.965 64.43c6.884 3.864 14.82 6.79 23.708 6.79 4.972 0 9.85-0.945 14.822-2.926L861.71 282.479c-77.149-89.804-204.684-148.384-349.135-148.384-235.371 0-427.242 157.158-427.242 351.294 0 105.368 57.361 201.017 147.323 265.447 6.88 4.905 11.852 13.68 11.852 22.45 0 2.925-0.957 5.85-2.006 8.775-6.881 26.318-18.831 69.334-18.831 71.223-0.958 2.92-2.013 6.79-2.013 10.75 0 7.83 5.929 13.68 13.865 13.68 2.963 0 5.928-0.944 7.935-2.925l92.922-53.674c6.885-3.87 14.82-6.794 22.756-6.794 3.916 0 8.889 0.944 12.81 1.98 43.496 12.644 91.012 19.53 139.48 19.53 235.372 0 427.24-157.158 427.24-351.294 0-58.58-17.78-114.143-48.467-163.003l-491.39 280.07-2.963 1.98z" fill="#09BB07"></path>
+                    </svg>
+                </div>
+                <div class="pay-btn-text">
+                    <div class="pay-btn-main">微信支付</div>
+                </div>
+                <div class="pay-btn-price">¥2.9</div>
+            </button>
+            
+            <!-- 保障信息 -->
+            <div class="modal-guarantee">
+                <div class="guarantee-item">⭐ 5000+ 用户好评</div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

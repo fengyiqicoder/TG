@@ -708,11 +708,17 @@ body {
 
     .main {
         padding-top: 80px; /* 调整为更高的导航栏 */
+        justify-content: center; /* 移动端垂直居中 */
+    }
+
+    .main-container {
+        justify-content: center; /* 移动端垂直居中 */
     }
 
     .content-wrapper {
         gap: 20px;
         padding: 15px 0;
+        justify-content: center; /* 移动端垂直居中 */
     }
 
     /* 在移动端自动切换为手机模型 */
@@ -806,6 +812,18 @@ body {
     .nav-menu {
         gap: 15px;
         font-size: 12px;
+    }
+
+    .main {
+        justify-content: center; /* 小屏幕移动端垂直居中 */
+    }
+
+    .main-container {
+        justify-content: center; /* 小屏幕移动端垂直居中 */
+    }
+
+    .content-wrapper {
+        justify-content: center; /* 小屏幕移动端垂直居中 */
     }
 
     .main-title {
@@ -942,4 +960,303 @@ body {
 
 .device-mockup.mobile .app-title-logo {
     font-size: 18px;
+} 
+
+/* 付费弹窗样式 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+}
+
+.modal-dialog {
+    position: relative;
+    width: 90%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 0;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: scaleIn 0.25s ease-out;
+    overflow: hidden;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Modal Header */
+.modal-header {
+    background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%);
+    padding: 30px 24px 20px;
+    color: white;
+    position: relative;
+}
+
+.modal-logo {
+    margin-bottom: 15px;
+}
+
+.modal-logo-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px;
+    backdrop-filter: blur(10px);
+}
+
+.modal-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    color: white;
+}
+
+.modal-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+}
+
+/* Features */
+.modal-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding: 25px 24px;
+    background: #f8f9fa;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    font-size: 16px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-text {
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Pricing */
+.modal-pricing {
+    padding: 20px 24px;
+    background: white;
+    border-bottom: 1px solid #eee;
+}
+
+.price-original {
+    font-size: 14px;
+    color: #999;
+    text-decoration: line-through;
+    margin-bottom: 5px;
+}
+
+.price-current {
+    font-size: 28px;
+    font-weight: 700;
+    color: #e74c3c;
+    margin-bottom: 5px;
+}
+
+.price-save {
+    font-size: 12px;
+    color: #27ae60;
+    font-weight: 600;
+    background: #e8f5e8;
+    padding: 2px 8px;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+/* Payment Button */
+.wechat-pay-btn {
+    width: calc(100% - 48px);
+    margin: 20px 24px 25px;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #07C160 0%, #05a050 100%);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 15px rgba(7, 193, 96, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.wechat-pay-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.wechat-pay-btn:hover::before {
+    left: 100%;
+}
+
+.pay-btn-icon {
+    font-size: 24px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.pay-btn-icon svg {
+    filter: brightness(0) invert(1); /* 将绿色图标转为白色 */
+}
+
+.pay-btn-text {
+    flex: 1;
+    text-align: left;
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.pay-btn-main {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.pay-btn-sub {
+    font-size: 12px;
+    opacity: 0.9;
+    margin-top: 2px;
+}
+
+.pay-btn-price {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.wechat-pay-btn:hover,
+.wechat-pay-btn:active {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(7, 193, 96, 0.4);
+}
+
+/* Guarantee */
+.modal-guarantee {
+    padding: 15px 24px 25px;
+    background: #f8f9fa;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.guarantee-item {
+    font-size: 11px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    z-index: 10;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* 移动端适配 */
+@media (max-width: 480px) {
+    .modal-dialog {
+        width: 95%;
+        max-width: none;
+    }
+    
+    .modal-features {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 20px;
+    }
+    
+    .modal-guarantee {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+    
+    .wechat-pay-btn {
+        margin: 15px 20px 20px;
+    }
 } 
