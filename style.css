@@ -1,0 +1,945 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden; /* 禁止滚动 */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+/* 导航栏 */
+.header {
+    background: rgba(255, 255, 255, 0.98);
+    border-bottom: 1px solid #e5e5e5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: 60px;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #666;
+    font-weight: 400;
+    font-size: 15px;
+    transition: color 0.2s ease;
+    position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #2AABEE;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #2AABEE;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.language-selector {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #666;
+    font-size: 14px;
+}
+
+.twitter-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: #1DA1F2;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* 主要内容区域 */
+.main {
+    height: 100vh;
+    padding-top: 60px; /* 为固定导航栏留出空间 */
+    display: flex;
+    flex-direction: column;
+}
+
+.main-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.content-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    min-height: 0; /* 重要：允许flex子项收缩 */
+}
+
+/* 应用展示区域 */
+.app-showcase {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.device-mockup {
+    position: relative;
+    width: 500px;
+    max-width: 100%;
+    transition: all 0.3s ease;
+}
+
+/* 默认显示桌面版样式 */
+.device-screen {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px 12px 0 0;
+    padding: 15px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.device-base {
+    width: 100%;
+    height: 15px;
+    background: linear-gradient(to bottom, #ddd, #bbb);
+    border-radius: 0 0 20px 20px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.device-base::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 6px;
+    background: #999;
+    border-radius: 0 0 4px 4px;
+    transition: all 0.3s ease;
+}
+
+/* 移动端设备样式 */
+.device-mockup.mobile {
+    width: 300px;
+}
+
+.device-mockup.mobile .device-screen {
+    height: 500px;
+    border-radius: 25px;
+    padding: 20px 15px;
+    background: #000;
+}
+
+.device-mockup.mobile .device-base {
+    display: none;
+}
+
+.device-mockup.mobile .device-base::after {
+    display: none;
+}
+
+/* 应用界面模拟 */
+.app-interface {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.device-mockup.mobile .app-interface {
+    border-radius: 20px;
+}
+
+.app-header {
+    height: 25px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-bottom: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.device-mockup.mobile .app-header {
+    height: 35px;
+    background: #2AABEE;
+    color: white;
+    border-bottom: none;
+    border-radius: 20px 20px 0 0;
+}
+
+.window-controls {
+    display: flex;
+    gap: 6px;
+}
+
+.device-mockup.mobile .window-controls {
+    display: none;
+}
+
+.control {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.control.close { background: #ff5f57; }
+.control.minimize { background: #ffbd2e; }
+.control.maximize { background: #28ca42; }
+
+.app-title {
+    flex: 1;
+    text-align: center;
+    font-size: 11px;
+    color: #666;
+    font-weight: 500;
+}
+
+.device-mockup.mobile .app-title {
+    font-size: 16px;
+    color: white;
+    font-weight: 600;
+}
+
+.app-content {
+    flex: 1;
+    display: flex;
+}
+
+.device-mockup.mobile .app-content {
+    flex-direction: column;
+}
+
+.sidebar {
+    width: 180px;
+    background: #f8f9fa;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+}
+
+.device-mockup.mobile .sidebar {
+    width: 100%;
+    height: 120px;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.search-bar {
+    height: 30px;
+    margin: 6px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+.device-mockup.mobile .search-bar {
+    height: 35px;
+    margin: 8px;
+    border-radius: 18px;
+}
+
+.chat-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.device-mockup.mobile .chat-list {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 8px;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.device-mockup.mobile .chat-item {
+    min-width: 100px;
+    flex-direction: column;
+    text-align: center;
+    padding: 6px;
+}
+
+.chat-item:hover {
+    background: rgba(42, 171, 238, 0.1);
+}
+
+.chat-item.active {
+    background: #2AABEE;
+    color: white;
+}
+
+.chat-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.device-mockup.mobile .chat-avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 0;
+    margin-bottom: 4px;
+}
+
+.chat-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.chat-name {
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.device-mockup.mobile .chat-name {
+    font-size: 10px;
+}
+
+.chat-preview {
+    font-size: 10px;
+    opacity: 0.7;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.device-mockup.mobile .chat-preview {
+    font-size: 8px;
+}
+
+.chat-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header-area {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    border-bottom: 1px solid #e0e0e0;
+    background: #fff;
+}
+
+.device-mockup.mobile .chat-header-area {
+    height: 50px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.chat-avatar.large {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+}
+
+.device-mockup.mobile .chat-avatar.large {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+}
+
+.chat-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 1px;
+}
+
+.device-mockup.mobile .chat-title {
+    font-size: 14px;
+}
+
+.chat-status {
+    font-size: 10px;
+    color: #666;
+}
+
+.device-mockup.mobile .chat-status {
+    font-size: 11px;
+}
+
+.message-area {
+    flex: 1;
+    padding: 12px;
+    background: #f8f9fa;
+    overflow-y: auto;
+}
+
+.device-mockup.mobile .message-area {
+    padding: 15px;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.device-mockup.mobile .message {
+    margin-bottom: 10px;
+}
+
+.message.received {
+    justify-content: flex-start;
+}
+
+.message.sent {
+    justify-content: flex-end;
+}
+
+.message-content {
+    max-width: 70%;
+    position: relative;
+}
+
+.message-text {
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-size: 11px;
+    line-height: 1.3;
+}
+
+.device-mockup.mobile .message-text {
+    padding: 8px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+}
+
+.message.received .message-text {
+    background: #fff;
+    color: #333;
+}
+
+.message.sent .message-text {
+    background: #2AABEE;
+    color: white;
+}
+
+.message-time {
+    font-size: 9px;
+    color: #999;
+    margin-top: 1px;
+    text-align: right;
+}
+
+.device-mockup.mobile .message-time {
+    font-size: 10px;
+}
+
+/* 内容区域 */
+.content-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    max-width: 400px;
+}
+
+.main-title {
+    font-size: 42px;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.main-description {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+/* 下载区域 */
+.download-section {
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background: #2AABEE;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 12px;
+}
+
+.btn-primary:hover {
+    background: #1f96d4;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(42, 171, 238, 0.3);
+}
+
+.alternative-downloads {
+    margin-bottom: 15px;
+}
+
+.app-store-link {
+    color: #2AABEE;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+    padding: 6px 0;
+    margin: 0 8px;
+}
+
+.app-store-link:hover {
+    text-decoration: underline;
+}
+
+.show-all-platforms {
+    color: #2AABEE;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
+    padding: 6px 0;
+}
+
+.show-all-platforms:hover {
+    text-decoration: underline;
+}
+
+/* 平台选择器 */
+.platform-selector {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e5e5;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.platform-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.platform-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+    background: #fff;
+}
+
+.platform-item:hover {
+    border-color: #2AABEE;
+    box-shadow: 0 2px 8px rgba(42, 171, 238, 0.15);
+}
+
+.platform-icon {
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.platform-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.platform-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: #333;
+}
+
+.platform-desc {
+    font-size: 11px;
+    color: #666;
+}
+
+/* 页脚 */
+.footer {
+    padding: 15px 0;
+    border-top: 1px solid #e5e5e5;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer-content p {
+    margin-bottom: 4px;
+    font-size: 12px;
+    color: #666;
+}
+
+.license-link,
+.source-link,
+.social-link,
+.beta-link {
+    color: #2AABEE;
+    text-decoration: none;
+}
+
+.license-link:hover,
+.source-link:hover,
+.social-link:hover,
+.beta-link:hover {
+    text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .content-wrapper {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px 0;
+    }
+    
+    .app-showcase,
+    .content-section {
+        flex: none;
+    }
+    
+    .main-title {
+        font-size: 32px;
+    }
+    
+    .device-mockup {
+        width: 400px;
+    }
+    
+    .device-screen {
+        height: 240px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        height: auto;
+        padding: 8px 15px;
+    }
+
+    .nav-menu {
+        gap: 25px;
+        margin-bottom: 8px;
+    }
+    
+    .nav-menu a {
+        font-size: 13px;
+    }
+
+    .main {
+        padding-top: 80px; /* 调整为更高的导航栏 */
+    }
+
+    .content-wrapper {
+        gap: 20px;
+        padding: 15px 0;
+    }
+
+    /* 在移动端自动切换为手机模型 */
+    .device-mockup {
+        width: 250px !important;
+    }
+    
+    .device-mockup .device-screen {
+        height: 400px !important;
+        border-radius: 20px !important;
+        padding: 15px 10px !important;
+        background: #000 !important;
+    }
+
+    .device-mockup .device-base {
+        display: none !important;
+    }
+
+    .device-mockup .app-interface {
+        border-radius: 15px !important;
+    }
+
+    .device-mockup .app-header {
+        height: 30px !important;
+        background: #2AABEE !important;
+        color: white !important;
+        border-bottom: none !important;
+        border-radius: 15px 15px 0 0 !important;
+    }
+
+    .device-mockup .window-controls {
+        display: none !important;
+    }
+
+    .device-mockup .app-title {
+        font-size: 14px !important;
+        color: white !important;
+        font-weight: 600 !important;
+    }
+
+    .device-mockup .app-content {
+        flex-direction: column !important;
+    }
+
+    .device-mockup .sidebar {
+        width: 100% !important;
+        height: 100px !important;
+        border-right: none !important;
+        border-bottom: 1px solid #e0e0e0 !important;
+    }
+
+    .device-mockup .chat-list {
+        display: flex !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        padding: 0 6px !important;
+    }
+
+    .device-mockup .chat-item {
+        min-width: 80px !important;
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 4px !important;
+    }
+
+    .device-mockup .chat-avatar {
+        width: 30px !important;
+        height: 30px !important;
+        margin-right: 0 !important;
+        margin-bottom: 3px !important;
+    }
+
+    .device-mockup .chat-name {
+        font-size: 9px !important;
+    }
+
+    .device-mockup .chat-preview {
+        font-size: 7px !important;
+    }
+
+    .main-title {
+        font-size: 24px;
+    }
+
+    .main-description {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-menu {
+        gap: 15px;
+        font-size: 12px;
+    }
+
+    .main-title {
+        font-size: 20px;
+    }
+
+    .main-description {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .device-mockup {
+        width: 200px !important;
+    }
+    
+    .device-mockup .device-screen {
+        height: 320px !important;
+        padding: 12px 8px !important;
+    }
+
+    .device-mockup .app-header {
+        height: 25px !important;
+    }
+
+    .device-mockup .app-title {
+        font-size: 12px !important;
+    }
+
+    .device-mockup .sidebar {
+        height: 80px !important;
+    }
+
+    .device-mockup .chat-item {
+        min-width: 60px !important;
+        padding: 3px !important;
+    }
+
+    .device-mockup .chat-avatar {
+        width: 24px !important;
+        height: 24px !important;
+    }
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.app-showcase,
+.content-section {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* 滚动条样式 */
+.chat-list::-webkit-scrollbar,
+.message-area::-webkit-scrollbar,
+.platform-selector::-webkit-scrollbar {
+    width: 3px;
+}
+
+.chat-list::-webkit-scrollbar-track,
+.message-area::-webkit-scrollbar-track,
+.platform-selector::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-list::-webkit-scrollbar-thumb,
+.message-area::-webkit-scrollbar-thumb,
+.platform-selector::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+}
+
+.chat-list::-webkit-scrollbar-thumb:hover,
+.message-area::-webkit-scrollbar-thumb:hover,
+.platform-selector::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Telegram Logo 样式 */
+.telegram-logo-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.telegram-logo {
+    width: 120px;
+    height: 120px;
+    filter: drop-shadow(0 10px 20px rgba(42, 171, 238, 0.3));
+    animation: logoFloat 3s ease-in-out infinite;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.app-title-logo {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2AABEE;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* 移动端 Logo 样式调整 */
+.device-mockup.mobile .telegram-logo {
+    width: 80px;
+    height: 80px;
+}
+
+.device-mockup.mobile .app-title-logo {
+    font-size: 18px;
+} 

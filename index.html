@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电报中文版官网 - 快速、安全的即时通讯应用</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="icon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="icon.ico">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <ul class="nav-menu">
+                    <li><a href="#" class="nav-link active">首页</a></li>
+                    <li><a href="#" class="nav-link">常见问题</a></li>
+                    <li><a href="#" class="nav-link">应用</a></li>
+                    <li><a href="#" class="nav-link">API</a></li>
+                    <li><a href="#" class="nav-link">管理</a></li>
+                </ul>
+                <div class="nav-right">
+                    <div class="language-selector">
+                        <span class="globe-icon">🌐</span>
+                        <span>中文</span>
+                    </div>
+                    <a href="#" class="twitter-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#1DA1F2">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                        Twitter
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="main-container">
+            <div class="content-wrapper">
+                <div class="app-showcase">
+                    <div class="device-mockup" id="device-mockup">
+                        <div class="device-screen">
+                            <div class="app-interface">
+                                <!-- Telegram Logo -->
+                                <div class="telegram-logo-container">
+                                    <img src="logo.svg.webp" alt="Telegram Logo" class="telegram-logo">
+                                    <div class="app-title-logo">Telegram</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="device-base"></div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h1 class="main-title">电报中文版官网</h1>
+                    <p class="main-description">
+                        快速、安全的即时通讯应用，支持多平台同步
+                    </p>
+
+                    <div class="download-section">
+                        <button id="primary-download-btn" class="btn-primary">
+                            <span id="download-text">获取电报中文版</span>
+                        </button>
+                        
+                        <div class="alternative-downloads">
+                            <a href="#" id="app-store-link" class="app-store-link" style="display: none;">
+                                App Store
+                            </a>
+                            <a href="#" id="play-store-link" class="app-store-link" style="display: none;">
+                                Google Play
+                            </a>
+                            <a href="#" id="ms-store-link" class="app-store-link" style="display: none;">
+                                Microsoft Store
+                            </a>
+                        </div>
+
+                        <a href="#" class="show-all-platforms" id="show-all-platforms">
+                            显示所有平台
+                        </a>
+                    </div>
+
+                    <div class="platform-selector" id="platform-selector" style="display: none;">
+                        <div class="platform-grid">
+                            <a href="https://apps.apple.com/app/telegram-messenger/id686449807" class="platform-item" data-platform="ios">
+                                <div class="platform-icon">
+                                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+                                        <rect width="32" height="32" rx="6" fill="#007AFF"/>
+                                        <path d="M22.3 10.1c-1.2 0-2.9.7-3.8.7-.9 0-2.4-.7-4-.7-2.1 0-4 1.2-5.1 3.1-2.2 3.8-.6 9.4 1.5 12.5 1.1 1.5 2.3 3.2 4 3.2 1.5 0 2.1-1 3.9-1s2.4 1 3.9 1c1.6 0 2.8-1.6 3.9-3.1.7-1 1.2-2 1.5-3.1-3.3-1.3-3.9-6.2-.1-7.8-.8-1.1-2.1-1.8-3.7-1.8z" fill="white"/>
+                                        <path d="M19.1 8.2c.9-1.1 1.5-2.6 1.3-4.2-1.3.1-2.8.8-3.7 1.9-.8.9-1.5 2.4-1.3 3.8 1.4.1 2.8-.7 3.7-1.5z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <div class="platform-info">
+                                    <div class="platform-name">iOS</div>
+                                    <div class="platform-desc">iPhone 和 iPad</div>
+                                </div>
+                            </a>
+
+                            <a href="https://play.google.com/store/apps/details?id=org.telegram.messenger" class="platform-item" data-platform="android">
+                                <div class="platform-icon">
+                                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+                                        <rect width="32" height="32" rx="6" fill="#34A853"/>
+                                        <path d="M16 4L4 10v12l12 6 12-6V10L16 4zm0 2.5L24.5 11 16 15.5 7.5 11 16 6.5zm-8 6.5v8.5l6-3v-8.5l-6 3zm8 5.5l6 3V13l-6 3v2.5z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <div class="platform-info">
+                                    <div class="platform-name">Android</div>
+                                    <div class="platform-desc">Android 手机和平板</div>
+                                </div>
+                            </a>
+
+                            <a href="https://desktop.telegram.org/" class="platform-item" data-platform="windows">
+                                <div class="platform-icon">
+                                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+                                        <rect width="32" height="32" rx="6" fill="#0078D4"/>
+                                        <path d="M6 6h9v9H6V6zm11 0h9v9h-9V6zM6 17h9v9H6v-9zm11 0h9v9h-9v-9z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <div class="platform-info">
+                                    <div class="platform-name">Windows</div>
+                                    <div class="platform-desc">Windows 10 及以上</div>
+                                </div>
+                            </a>
+
+                            <a href="https://macos.telegram.org/" class="platform-item" data-platform="mac">
+                                <div class="platform-icon">
+                                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+                                        <rect width="32" height="32" rx="6" fill="#000000"/>
+                                        <path d="M22.3 10.1c-1.2 0-2.9.7-3.8.7-.9 0-2.4-.7-4-.7-2.1 0-4 1.2-5.1 3.1-2.2 3.8-.6 9.4 1.5 12.5 1.1 1.5 2.3 3.2 4 3.2 1.5 0 2.1-1 3.9-1s2.4 1 3.9 1c1.6 0 2.8-1.6 3.9-3.1.7-1 1.2-2 1.5-3.1-3.3-1.3-3.9-6.2-.1-7.8-.8-1.1-2.1-1.8-3.7-1.8z" fill="white"/>
+                                        <path d="M19.1 8.2c.9-1.1 1.5-2.6 1.3-4.2-1.3.1-2.8.8-3.7 1.9-.8.9-1.5 2.4-1.3 3.8 1.4.1 2.8-.7 3.7-1.5z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <div class="platform-info">
+                                    <div class="platform-name">macOS</div>
+                                    <div class="platform-desc">macOS 10.12 及以上</div>
+                                </div>
+                            </a>
+
+                            <a href="https://desktop.telegram.org/" class="platform-item" data-platform="linux">
+                                <div class="platform-icon">
+                                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+                                        <rect width="32" height="32" rx="6" fill="#E95420"/>
+                                        <circle cx="16" cy="16" r="10" fill="white"/>
+                                        <circle cx="16" cy="16" r="6" fill="#E95420"/>
+                                    </svg>
+                                </div>
+                                <div class="platform-info">
+                                    <div class="platform-name">Linux</div>
+                                    <div class="platform-desc">AppImage、Snap、Flatpak</div>
+                                </div>
+                            </a>
+
+                            <a href="https://web.telegram.org/" class="platform-item" data-platform="web">
+                                <div class="platform-icon">
+                                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+                                        <rect width="32" height="32" rx="6" fill="#2AABEE"/>
+                                        <path d="M16 4C9.4 4 4 9.4 4 16s5.4 12 12 12 12-5.4 12-12S22.6 4 16 4zm6 13h-4v4h-4v-4H10v-2h4v-4h4v4h4v2z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <div class="platform-info">
+                                    <div class="platform-name">Web</div>
+                                    <div class="platform-desc">网页版</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="footer-content">
+                    <p class="license-info">
+                        此软件在 <a href="#" class="license-link">GPL v3</a> 许可证下提供。
+                    </p>
+                    <p class="source-info">
+                        源代码可在 <a href="#" class="source-link">GitHub</a> 上获取。
+                    </p>
+                    <p class="social-info">
+                        在 <a href="#" class="social-link">Twitter</a> 上关注我们 - <a href="#" class="beta-link">Beta 版本</a>
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html> 
