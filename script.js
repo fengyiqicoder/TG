@@ -381,6 +381,67 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = '';
     }
 
+    // 二维码弹窗相关函数
+    const qrcodeModal = document.getElementById('qrcode-modal');
+    const qrcodeModalOverlay = qrcodeModal ? qrcodeModal.querySelector('.modal-overlay') : null;
+    const qrcodeModalCloseBtn = qrcodeModal ? qrcodeModal.querySelector('.modal-close') : null;
+    const paymentCompleteBtn = document.getElementById('payment-complete-btn');
+
+    function openQRCodeModal() {
+        if (!qrcodeModal) return;
+        qrcodeModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeQRCodeModal() {
+        if (!qrcodeModal) return;
+        qrcodeModal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+    // 绑定二维码弹窗事件
+    if (qrcodeModalOverlay) qrcodeModalOverlay.addEventListener('click', closeQRCodeModal);
+    if (qrcodeModalCloseBtn) qrcodeModalCloseBtn.addEventListener('click', closeQRCodeModal);
+
+    if (paymentCompleteBtn) {
+        paymentCompleteBtn.addEventListener('click', function() {
+            // 模拟支付完成处理
+            this.style.background = 'linear-gradient(135deg, #27ae60 0%, #2ecc71 100%)';
+            this.innerHTML = '<span class="complete-btn-icon">✓</span><span class="complete-btn-text">支付成功！</span>';
+            
+            // 短暂延迟后显示loading界面
+            setTimeout(() => {
+                const loadingElement = document.getElementById('qrcode-loading');
+                if (loadingElement) {
+                    loadingElement.style.display = 'flex';
+                    // 添加淡入动画
+                    loadingElement.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingElement.style.transition = 'opacity 0.3s ease';
+                        loadingElement.style.opacity = '1';
+                    }, 10);
+                }
+                
+                // 1.5秒后跳转下载
+                setTimeout(() => {
+                    // 根据操作系统判断下载链接
+                    const platform = detectPlatform();
+                    let downloadUrl;
+                    
+                    if (platform === 'mac') {
+                        downloadUrl = 'https://telegram.org/dl/desktop/mac';
+                    } else {
+                        // 其他系统（包括Windows、Linux等）使用Windows下载链接
+                        downloadUrl = 'https://telegram.org/dl/desktop/win64';
+                    }
+                    
+                    // 直接跳转到下载链接
+                    window.location.href = downloadUrl;
+                }, 1500);
+            }, 800);
+        });
+    }
+
     if (primaryBtn) {
         primaryBtn.addEventListener('click', function(event) {
             event.preventDefault();
@@ -394,17 +455,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (wechatPayBtn) {
         wechatPayBtn.addEventListener('click', function() {
-            // 在此接入真实的微信支付流程
-            // 支付成功前不显示任何其他页面
+            // 关闭当前支付弹窗，显示二维码弹窗
+            closePaymentModal();
+            openQRCodeModal();
         });
     }
     
     // 添加键盘导航支持
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape') {
-            const platformSelector = document.getElementById('platform-selector');
-            if (platformSelector.style.display === 'block') {
-                togglePlatformSelector();
+            // 检查是否有弹窗打开，按优先级关闭
+            if (qrcodeModal && qrcodeModal.style.display === 'flex') {
+                closeQRCodeModal();
+            } else if (paymentModal && paymentModal.style.display === 'flex') {
+                closePaymentModal();
+            } else {
+                const platformSelector = document.getElementById('platform-selector');
+                if (platformSelector.style.display === 'block') {
+                    togglePlatformSelector();
+                }
             }
         }
     });

@@ -241,6 +241,65 @@
         </div>
     </div>
 
+    <!-- 二维码支付弹窗 -->
+    <div id="qrcode-modal" class="modal" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-dialog qrcode-modal-dialog">
+            <button class="modal-close" aria-label="关闭">&times;</button>
+            
+            <!-- 二维码区域 -->
+            <div class="qrcode-header">
+                <div class="qrcode-logo">
+                    <img src="logo.svg.webp" alt="Telegram Logo" class="qrcode-logo-img">
+                </div>
+                <h2 class="qrcode-title">微信扫码支付</h2>
+                <p class="qrcode-subtitle">使用微信扫描下方二维码完成支付</p>
+            </div>
+            
+            <!-- 二维码图片 -->
+            <div class="qrcode-container">
+                <div class="qrcode-frame">
+                    <img src="testQRCode.webp" alt="支付二维码" class="qrcode-image">
+                </div>
+                <div class="qrcode-tips">
+                    <div class="tip-item">
+                        <span class="tip-icon">📱</span>
+                        <span class="tip-text">打开微信扫一扫</span>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">💳</span>
+                        <span class="tip-text">确认支付 ¥9.9</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 支付完成按钮 -->
+            <div class="qrcode-actions">
+                <button id="payment-complete-btn" class="payment-complete-btn">
+                    <span class="complete-btn-icon">✓</span>
+                    <span class="complete-btn-text">我已完成支付</span>
+                </button>
+                <div class="payment-help">
+                    <span>支付遇到问题？</span>
+                    <a href="#" class="help-link">联系客服</a>
+                </div>
+            </div>
+            
+            <!-- Loading 界面 -->
+            <div class="qrcode-loading" id="qrcode-loading" style="display: none;">
+                <div class="loading-content">
+                    <div class="loading-spinner">
+                        <div class="spinner-ring"></div>
+                        <div class="spinner-ring"></div>
+                        <div class="spinner-ring"></div>
+                    </div>
+                    <div class="loading-text">正在准备下载...</div>
+                    <div class="loading-subtitle">请稍候，即将为您跳转到下载页面</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html> 
