@@ -627,4 +627,212 @@ if ('serviceWorker' in navigator) {
         // 这里可以注册 Service Worker
         // navigator.serviceWorker.register('/sw.js');
     });
-} 
+}
+
+// 新增功能：FAQ折叠展开
+function initFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        
+        if (question && answer) {
+            question.addEventListener('click', function() {
+                const isActive = item.classList.contains('active');
+                
+                // 关闭所有其他FAQ
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // 切换当前FAQ状态
+                if (isActive) {
+                    item.classList.remove('active');
+                } else {
+                    item.classList.add('active');
+                }
+            });
+        }
+    });
+}
+
+// 新增功能：安装指南选项卡切换
+function initTabs() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const targetTab = this.getAttribute('data-tab');
+            
+            // 移除所有活动状态
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // 设置当前活动状态
+            this.classList.add('active');
+            const targetContent = document.getElementById(targetTab + '-tab');
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        });
+    });
+}
+
+// 新增功能：滚动到指定区域
+function scrollToSection(sectionClass) {
+    const section = document.querySelector(`.${sectionClass}`);
+    if (section) {
+        const headerHeight = document.querySelector('.header')?.offsetHeight || 60;
+        const targetPosition = section.offsetTop - headerHeight;
+        
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+    }
+}
+
+// 新增功能：优化滚动性能
+function initSmoothScrolling() {
+    // 为页面内的所有锚点链接添加平滑滚动
+    const internalLinks = document.querySelectorAll('a[href^="#"]');
+    
+    internalLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                const headerHeight = document.querySelector('.header')?.offsetHeight || 60;
+                const targetPosition = targetElement.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// 新增功能：动态加载和性能优化
+function initLazyLoading() {
+    // 图片懒加载
+    const images = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                observer.unobserve(img);
+            }
+        });
+    });
+    
+    images.forEach(img => imageObserver.observe(img));
+    
+    // 动画元素进入视窗时触发
+    const animatedElements = document.querySelectorAll('.feature-card, .testimonial-card, .security-item');
+    const animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        animationObserver.observe(el);
+    });
+}
+
+// 新增功能：用户体验优化
+function initUXEnhancements() {
+    // 添加键盘导航支持
+    document.addEventListener('keydown', function(e) {
+        // ESC键关闭模态框
+        if (e.key === 'Escape') {
+            const openModals = document.querySelectorAll('.modal[style*="block"]');
+            openModals.forEach(modal => {
+                modal.style.display = 'none';
+            });
+        }
+    });
+    
+    // 优化焦点管理
+    const focusableElements = document.querySelectorAll('button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    focusableElements.forEach(el => {
+        el.addEventListener('focus', function() {
+            this.style.outline = '2px solid #2AABEE';
+            this.style.outlineOffset = '2px';
+        });
+        
+        el.addEventListener('blur', function() {
+            this.style.outline = '';
+            this.style.outlineOffset = '';
+        });
+    });
+}
+
+// 新增功能：性能监控
+function initPerformanceTracking() {
+    // 页面加载时间监控
+    window.addEventListener('load', function() {
+        const perfData = performance.timing;
+        const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+        
+        console.log(`页面加载时间: ${pageLoadTime}ms`);
+        
+        // 如果需要，可以发送到分析服务
+        if (window.gtag) {
+            gtag('event', 'page_load_time', {
+                event_category: 'Performance',
+                value: pageLoadTime
+            });
+        }
+    });
+    
+    // 监控用户交互
+    let scrollDepth = 0;
+    window.addEventListener('scroll', throttle(function() {
+        const currentScroll = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+        if (currentScroll > scrollDepth) {
+            scrollDepth = currentScroll;
+            
+            // 记录滚动深度里程碑
+            if (scrollDepth === 25 || scrollDepth === 50 || scrollDepth === 75 || scrollDepth === 100) {
+                if (window.gtag) {
+                    gtag('event', 'scroll_depth', {
+                        event_category: 'Engagement',
+                        value: scrollDepth
+                    });
+                }
+            }
+        }
+    }, 300));
+}
+
+// 在页面加载时初始化所有新功能
+document.addEventListener('DOMContentLoaded', function() {
+    // 等待DOM完全加载后再初始化新功能
+    setTimeout(function() {
+        initFAQ();
+        initTabs();
+        initSmoothScrolling();
+        initLazyLoading();
+        initUXEnhancements();
+        initPerformanceTracking();
+        
+        console.log('电报中文版页面增强功能已加载完成');
+    }, 100);
+}); 
